@@ -14,9 +14,8 @@ Funcionalidades implementadas:
 
 ## 🧱 Arquitectura MVC
 
-### Diagrama Mermaid
+### Este es el Mermaid
 
-### Diagrama de secuencia Mermaid
 
 ```mermaid
 sequenceDiagram
