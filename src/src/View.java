@@ -1,3 +1,4 @@
+import javax.swing.plaf.synth.SynthOptionPaneUI;
 import java.util.ArrayList;
 import java.util.Scanner;
 
@@ -33,6 +34,8 @@ public class View {
         System.out.println("3. Aumentar Velocidad");
         System.out.println("4. Bajar velocidad");
         System.out.println("5. Mostrar todos los coches");
+        System.out.println("7. Avanzar coche");
+        System.out.println("8. Poner gasolina");
         System.out.println("6. Salir");
         System.out.print("Seleccione una opción: ");
     }
@@ -47,7 +50,7 @@ public class View {
         System.out.print("Ingrese modelo: ");
         String modelo = sc.next();
 
-        if (Model.crearCoche(modelo, matricula)) {
+        if (Model.crearCoche(modelo, matricula)){
             System.out.println("Coche creado exitosamente.");
         } else {
             System.out.println("Error: La matrícula ya existe.");
@@ -95,6 +98,20 @@ public class View {
             System.out.println("Coche no encontrado.");
         } else {
             System.out.println("Velocidad de " + matricula + ": " + velocidad + " km/h");
+        }
+    }
+    public static void cocheAvanzado(String matricula, double avanzar) {
+        if (avanzar > 0) {
+            System.out.println("El coche con matrícula " + matricula + " avanzó " + avanzar + " metros.");
+        } else {
+            System.out.println("No se puede avanzar una distancia negativa o cero.");
+        }
+    }
+    public static void ponerGasolina(String matricula, double ponerGasolina){
+        if (ponerGasolina > 0) {
+            System.out.println("El coche con matrícula " + matricula + " ha puesto " + ponerGasolina + " litros de gasolina.");
+        } else {
+            System.out.println("No se puede poner una cantidad negativa o cero de gasolina.");
         }
     }
 }

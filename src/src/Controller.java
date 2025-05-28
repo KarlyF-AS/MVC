@@ -16,6 +16,7 @@ public class Controller {
         Model.cambiarVelocidad("XYZ 5678", 80);
 
         Model.crearCoche("Audi", "DEF 9012");
+        Model.avanzar("mmm123", 30);
     }
 
     public static void mostrarVelocidadCoche(String matricula) {
