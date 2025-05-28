@@ -6,11 +6,11 @@ public class Model {
      * Crea un nuevo coche si no existe la matrícula
      * @author Karly Albarrán
      */
-    public static boolean crearCoche(String modelo, String matricula) {
+    public static boolean crearCoche(String modelo, String matricula, double avanzar, double ponerGasolina) {
         for (Coche c : coches) {
             if (c.getMatricula().equals(matricula)) return false;
         }
-        coches.add(new Coche(modelo, matricula));
+        coches.add(new Coche(modelo, matricula, avanzar, ponerGasolina));
         return true;
     }
     /**
@@ -60,5 +60,14 @@ public class Model {
      */
     public static ArrayList<Coche> getTodosLosCoches() {
         return coches;
+    }
+
+    public static void avanzar(String matricula, double avanzar) {
+        for (Coche c : coches) {
+            if (c.getMatricula().equals(matricula)) {
+                c.getAvanzar();
+                break;
+            }
+        }
     }
 }
