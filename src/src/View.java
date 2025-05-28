@@ -33,6 +33,8 @@ public class View {
         System.out.println("3. Aumentar Velocidad");
         System.out.println("4. Bajar velocidad");
         System.out.println("5. Mostrar todos los coches");
+        System.out.println("7. Avanzar coche");
+        System.out.println("8. Poner gasolina");
         System.out.println("6. Salir");
         System.out.print("Seleccione una opción: ");
     }
