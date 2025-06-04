@@ -1,10 +1,5 @@
-import javax.swing.plaf.synth.SynthOptionPaneUI;
 import java.util.ArrayList;
 import java.util.Scanner;
-
-/**
- * Interfaz de usuario: menú y entradas/salidas
- */
 
 public class View {
     private static Scanner sc = new Scanner(System.in);
@@ -21,6 +16,8 @@ public class View {
                 case 3 -> acelerarCoche();
                 case 4 -> bajarVelocidad();
                 case 5 -> mostrarTodosLosCoches();
+                case 7 -> avanzarCoche();
+                case 8 -> ponerGasolinaCoche();
                 case 6 -> System.out.println("Saliendo...");
                 default -> System.out.println("❌ Opción no válida.");
             }
@@ -31,7 +28,7 @@ public class View {
         System.out.println("\n--- MENÚ ---");
         System.out.println("1. Crear coche");
         System.out.println("2. Cambiar velocidad");
-        System.out.println("3. Aumentar Velocidad");
+        System.out.println("3. Aumentar velocidad");
         System.out.println("4. Bajar velocidad");
         System.out.println("5. Mostrar todos los coches");
         System.out.println("7. Avanzar coche");
@@ -50,10 +47,10 @@ public class View {
         System.out.print("Ingrese modelo: ");
         String modelo = sc.next();
 
-        if (Model.crearCoche(modelo, matricula)){
-            System.out.println("Coche creado exitosamente.");
+        if (Model.crearCoche(modelo, matricula)) {
+            System.out.println("✅ Coche creado exitosamente.");
         } else {
-            System.out.println("Error: La matrícula ya existe.");
+            System.out.println("❌ Error: La matrícula ya existe.");
         }
     }
 
@@ -64,20 +61,21 @@ public class View {
         int velocidad = sc.nextInt();
 
         Model.cambiarVelocidad(matricula, velocidad);
-        System.out.println("✅ Velocidad actualizada.");
+        System.out.println(" Velocidad actualizada.");
     }
+
     private static void acelerarCoche() {
         System.out.print("Ingrese matrícula: ");
         String matricula = sc.next();
         Model.acelerarCoche(matricula);
-        System.out.println("Velocidad aumentada.");
+        System.out.println(" Velocidad aumentada.");
     }
 
     private static void bajarVelocidad() {
         System.out.print("Ingrese matrícula: ");
         String matricula = sc.next();
         Model.bajarVelocidad(matricula);
-        System.out.println("Velocidad disminuida.");
+        System.out.println(" Velocidad disminuida.");
     }
 
     private static void mostrarTodosLosCoches() {
@@ -93,25 +91,43 @@ public class View {
         }
     }
 
+    private static void avanzarCoche() {
+        System.out.print("Ingrese matrícula: ");
+        String matricula = sc.next();
+        System.out.print("Ingrese metros a avanzar: ");
+        double metros = sc.nextDouble();
+
+        boolean pudoAvanzar = Model.avanzar(matricula, metros);
+        if (pudoAvanzar) {
+            System.out.println("✅ El coche con matrícula " + matricula + " avanzó " + metros + " metros.");
+        } else {
+            System.out.println("❌ No pudo avanzar, revise gasolina o matrícula.");
+        }
+    }
+
+    private static void ponerGasolinaCoche() {
+        System.out.print("Ingrese matrícula: ");
+        String matricula = sc.next();
+        System.out.print("Ingrese litros de gasolina a poner: ");
+        double litros = sc.nextDouble();
+
+        boolean exito = Model.ponerGasolina(matricula, litros);
+        if (exito) {
+            System.out.println("✅ Gasolina añadida correctamente.");
+            mostrarGasolina(matricula, litros);
+        } else {
+            System.out.println("❌ No se pudo poner gasolina. Verifique la matrícula y los litros.");
+        }
+    }
+
+    public static void mostrarGasolina(String matricula, double litros) {
+        System.out.println("El coche con matrícula " + matricula + " ha puesto " + litros + " litros de gasolina.");
+    }
     public static void mostrarVelocidad(String matricula, int velocidad) {
         if (velocidad == -1) {
-            System.out.println("Coche no encontrado.");
+            System.out.println("❌ Coche no encontrado.");
         } else {
-            System.out.println("Velocidad de " + matricula + ": " + velocidad + " km/h");
-        }
-    }
-    public static void cocheAvanzado(String matricula, double avanzar) {
-        if (avanzar > 0) {
-            System.out.println("El coche con matrícula " + matricula + " avanzó " + avanzar + " metros.");
-        } else {
-            System.out.println("No se puede avanzar una distancia negativa o cero.");
-        }
-    }
-    public static void ponerGasolina(String matricula, double ponerGasolina){
-        if (ponerGasolina > 0) {
-            System.out.println("El coche con matrícula " + matricula + " ha puesto " + ponerGasolina + " litros de gasolina.");
-        } else {
-            System.out.println("No se puede poner una cantidad negativa o cero de gasolina.");
+            System.out.println("🚗 Velocidad de " + matricula + ": " + velocidad + " km/h");
         }
     }
 }

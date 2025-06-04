@@ -1,13 +1,19 @@
-# 🚗 Sistema de Gestión de Coches
+# App de Coche - Patrón MVC
 
-## 🎯 Objetivo
-Implementar al MVC los metodos Avanzar y ponerGasolina, para que cada vez que se eliga alguna de esas opciones, se imprima por pantalla
+## Funcionalidades
 
-Funcionalidades:
--  Avanzar = double metros y cada vez que el coche avance, la gasolina disminuye en litros
-- ponerGasolina = double y si el user selecciona esta opción, la gasolina tiene que aumentar en litros
+Se han añadido las funciones:
+- **Avanzar (metros)**: el coche consume gasolina dependiendo de la distancia y la velocidad.
+- **Poner gasolina (litros)**: se incrementa el nivel de gasolina del coche.
 
-(Complicacione en )
----
+## Implementación
 
-## 🧱 Arquitectura MVC
+La lógica está separada en 3 capas:
+- `Model.java` gestiona los datos (lista de coches).
+- `View.java` muestra el menú y recibe entradas del usuario.
+- `Controller.java` coordina las acciones del usuario con el modelo.
+
+## Uso
+
+1. Se cargan 3 coches al iniciar la app.
+2. Desde el menú puedes avanzar o poner gasolina.
