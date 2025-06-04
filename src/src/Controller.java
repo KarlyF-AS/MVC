@@ -1,7 +1,3 @@
-/**
- * Controlador principal que coordina el modelo y la vista
- * Carga datos iniciales y muestra el menú
- */
 public class Controller {
     public static void iniciarAplicacion() {
         cargarDatosDePrueba();
@@ -9,14 +5,17 @@ public class Controller {
     }
 
     private static void cargarDatosDePrueba() {
-        Model.crearCoche("Ferrari", "ABC 1234");
-        Model.cambiarVelocidad("ABC 1234", 120);
+        Model.crearCoche("Ferrari", "ABC1234");
+        Model.cambiarVelocidad("ABC1234", 120);
+        Model.ponerGasolina("ABC1234", 50);
 
-        Model.crearCoche("BMW", "XYZ 5678");
-        Model.cambiarVelocidad("XYZ 5678", 80);
+        Model.crearCoche("BMW", "XYZ5678");
+        Model.cambiarVelocidad("XYZ5678", 80);
+        Model.ponerGasolina("XYZ5678", 40);
 
-        Model.crearCoche("Audi", "DEF 9012");
-        Model.avanzar("mmm123", 30);
+        Model.crearCoche("Audi", "DEF9012");
+        Model.cambiarVelocidad("DEF9012", 60);
+        Model.ponerGasolina("DEF9012", 30);
     }
 
     public static void mostrarVelocidadCoche(String matricula) {
