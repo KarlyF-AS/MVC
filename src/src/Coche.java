@@ -6,8 +6,8 @@ public class Coche {
     public double gasolina;
     /**
      * Constructor del coche.
-     *
-     * @param modelo Nombre del modelo del coche.
+     * @author Karly Albarrán
+     * * @param modelo Nombre del modelo del coche.
      * @param matricula Matrícula única identificadora.
      */
     public Coche(String modelo, String matricula) {

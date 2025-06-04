@@ -1,6 +1,6 @@
 public class View {
     public static boolean muestraVelocidad(String matricula, Integer v) {
-        System.out.println("View " + matricula + ": " + v + "km/hr");
+        System.out.println("Velocidad actual: "+ matricula + ": " + v + "km/hr");
         return true;
     }
 
@@ -12,7 +12,7 @@ public class View {
      * @return true si se mostró.
      */
     public static boolean alarmaInfraccion(String matricula, Integer v) {
-        System.out.println("View INFRACCION: " + matricula + " a " + v + "km/hr");
+        System.out.println("INFRACCIÓN... Vas muy rápido!: " + matricula + " a " + v + "km/hr");
         return true;
     }
 
@@ -24,7 +24,7 @@ public class View {
      * @return true si se mostró.
      */
     public static boolean alarmaGasolina(String matricula, double gasolina) {
-        System.out.println("View  GASOLINA BAJA: " + matricula + " con " + gasolina + " litros");
+        System.out.println("===Alerta! Repostar === " + matricula + " con " + gasolina + " litros");
         return true;
     }
 
@@ -35,15 +35,14 @@ public class View {
      * @param metros Metros avanzados.
      */
     public static void mostrarAvance(String matricula, double metros) {
-        System.out.println("View  Avanzó: " + matricula + " " + metros + " metros");
+        System.out.println("Avanzó: " + matricula + " " + metros + " metros");
     }
 
     /**
      * Muestra que el coche no pudo avanzar.
-     *
      * @param matricula Matrícula del coche.
      */
     public static void mostrarErrorAvance(String matricula) {
-        System.out.println("View  No pudo avanzar: falta gasolina en " + matricula);
+        System.out.println("No pudo avanzar: falta gasolina en " + matricula);
     }
 }

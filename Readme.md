@@ -1,7 +1,7 @@
-# 🚗 Proyecto MVC con Alerta de Gasolina y Velocidad
+# MVC con Observer: Alerta de Gasolina y Velocidad
 
-- El coche va muy rápido (más de 120 km/h) o muy lento (menos de 90 km/h).
-- La gasolina baja de 10 litros.
+- Si el coche va muy rápido (más de 200 km/h) o muy lento (menos de 90 km/h) arroja un mensaje por pantalla.
+- Si la gasolina baja de 10 litros, también arroja una alerta.
 
 ---
 
@@ -11,14 +11,13 @@
 - **View**: muestra mensajes en pantalla.
 - **Controller**: hace de intermediario entre Model y View.
 - **Observadores**: detectan cambios importantes (velocidad y gasolina) para lanzar alertas.
+- **App**: donde se ejecuta todo.
 
 ---
 
-## ¿Qué hice y por qué?
+### Problemas:
 
-### Antes tenía problemas como:
-
-- No se avisaba bien cuando la gasolina estaba baja.
+- No avisaba cuando la gasolina estaba baja.
 - Al avanzar el coche y consumir gasolina, no avisaba que la gasolina bajó.
 
 
@@ -28,23 +27,23 @@
 - Ahora lanza una alerta con la cantidad que queda.
 - Cuando el coche avanza y consume gasolina, se notifica automáticamente al observador para ver si hay alerta.
 - Añadí JavaDocs para que el código sea más claro y fácil de seguir.
-
 ---
 
 ## Final
-PAra cheqeuar que funcionaba, lo probe varias veces.
+Para cheqeuar que funcionaba, lo probe varias veces.
 
 ---
 ```mermaid
 sequenceDiagram
-    participant Usuario
-    participant Controller
+    participant App
     participant Model
+    participant View
     participant ObserverVelocidad
     participant ObserverGasolina
-    participant View
-
-    Usuario->>Controller: cambiarVelocidad(matricula, velocidad)
+    participant Controller
+    
+    
+    App->>Controller: cambiarVelocidad(matricula, velocidad)
     Controller->>Model: cambiarVelocidad(matricula, velocidad)
     activate Model
 
@@ -58,7 +57,7 @@ sequenceDiagram
     View-->>Usuario: mostrar mensaje de alarma
     deactivate View
 
-    Usuario->>Controller: ponerGasolina(matricula, litros)
+    App->>Controller: ponerGasolina(matricula, litros)
     Controller->>Model: ponerGasolina(matricula, litros)
     activate Model
 
@@ -72,7 +71,7 @@ sequenceDiagram
     View-->>Usuario: mostrar alerta de gasolina baja
     deactivate View
 
-    Usuario->>Controller: avanzar(matricula, metros)
+    App->>Controller: avanzar(matricula, metros)
     Controller->>Model: avanzar(matricula, metros)
     activate Model
     Model->>ObserverGasolina: update(coche)
@@ -81,7 +80,12 @@ sequenceDiagram
     ObserverGasolina->>View: alarmaGasolina(matricula, gasolina)
     deactivate ObserverGasolina
     activate View
-    View-->>Usuario: mostrar mensaje avance o error
+    View-->>App: mostrar mensaje avance o error
     deactivate View
 
 ```
+
+---
+
+### Imagen del resultado por pantalla
+![Captura de pantalla_2025-06-04_13-47-43.jpg](src/src/Captura%20de%20pantalla_2025-06-04_13-47-43.jpg)

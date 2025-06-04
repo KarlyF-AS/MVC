@@ -28,8 +28,8 @@ public class Controller {
      * @param metros Distancia a avanzar.
      */
     public static void avanzar(String matricula, double metros) {
-        boolean pudo = Model.avanzar(matricula, metros);
-        if (pudo) {
+        boolean c = Model.avanzar(matricula, metros);
+        if (c) {
             View.mostrarAvance(matricula, metros);
         } else {
             View.mostrarErrorAvance(matricula);

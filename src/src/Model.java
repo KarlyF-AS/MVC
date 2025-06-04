@@ -2,6 +2,7 @@ import java.util.ArrayList;
 
 public class Model {
     static ArrayList<Coche> parking = new ArrayList<>();
+
     /**
      * Notifica al observador de velocidad.
      * @author Karly Albarrán
