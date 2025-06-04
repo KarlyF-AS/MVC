@@ -4,8 +4,9 @@
 public class ObserverGasolina {
     /**
      * Verifica si el coche tiene menos de 10 litros y lanza una alerta.
-     * @author Karly Albarrán
+     *
      * @param coche Coche a evaluar.
+     * @author Karly Albarrán
      */
     public static void update(Coche coche) {
         if (coche.gasolina < 10) {
@@ -13,3 +14,4 @@ public class ObserverGasolina {
         }
     }
 }
+

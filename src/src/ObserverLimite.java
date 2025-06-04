@@ -2,7 +2,7 @@
  * Detecta si la velocidad del coche está fuera del rango permitido.
  */
 public class ObserverLimite {
-    final static int LIMITE = 120;
+    final static int LIMITE = 200;
     final static int MINIMO = 90;
     /**
      * Verifica si hay infracción de velocidad y lanza alerta.
@@ -14,4 +14,9 @@ public class ObserverLimite {
             View.alarmaInfraccion(coche.matricula, coche.velocidad);
         }
     }
+   /* public static(Coche coche){
+        if (coche.velocidad > LIMITE || coche.velocidad < MINIMO){
+            View.alarmaGasolina(coche.matricula, coche.velocidad);
+        }
+    }*/
 }
