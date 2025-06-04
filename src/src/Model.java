@@ -1,80 +1,71 @@
 import java.util.ArrayList;
 
 public class Model {
-    private static ArrayList<Coche> coches = new ArrayList<>();
+    static ArrayList<Coche> parking = new ArrayList<>();
+    /**
+     * Notifica al observador de velocidad.
+     * @author Karly Albarrán
+     * @param coche Coche afectado.
+     */
+    public static void notifyObservers(Coche coche) {
+        ObserverLimite.update(coche);
+    }
 
     /**
-     * Crea un nuevo coche si no existe la matrícula
+     * Notifica al observador de gasolina.
+     * @param coche Coche afectado.
      */
-    public static boolean crearCoche(String modelo, String matricula) {
-        for (Coche c : coches) {
-            if (c.getMatricula().equals(matricula)) return false;
-        }
-        coches.add(new Coche(modelo, matricula));
-        return true;
+    public static void notifyObserversGasolina(Coche coche) {
+        ObserverGasolina.update(coche);
     }
 
-    public static void cambiarVelocidad(String matricula, int velocidad) {
-        for (Coche c : coches) {
-            if (c.getMatricula().equals(matricula)) {
-                c.setVelocidad(velocidad);
-                break;
+    public static Coche crearCoche(String modelo, String matricula) {
+        Coche aux = new Coche(modelo, matricula);
+        parking.add(aux);
+        return aux;
+    }
+
+    public static Coche getCoche(String matricula) {
+        for (Coche e : parking) {
+            if (e.matricula.equals(matricula)) {
+                return e;
             }
         }
+        return null;
     }
-
-    public static void acelerarCoche(String matricula) {
-        for (Coche c : coches) {
-            if (c.getMatricula().equals(matricula)) {
-                c.acelerar();
-                break;
-            }
-        }
-    }
-
-    public static void bajarVelocidad(String matricula) {
-        for (Coche c : coches) {
-            if (c.getMatricula().equals(matricula)) {
-                c.bajarVelocidad();
-                break;
-            }
-        }
-    }
-
-    public static int getVelocidad(String matricula) {
-        for (Coche c : coches) {
-            if (c.getMatricula().equals(matricula)) return c.getVelocidad();
+    /**
+     * Cambia la velocidad de un coche y notifica al observador.
+     *
+     * @param matricula Matrícula del coche.
+     * @param v Nueva velocidad.
+     * @return Velocidad actualizada.
+     */
+    public static Integer cambiarVelocidad(String matricula, Integer v) {
+        Coche c = getCoche(matricula);
+        if (c != null) {
+            c.velocidad = v;
+            notifyObservers(c);
+            return c.velocidad;
         }
         return -1;
     }
 
-    public static ArrayList<Coche> getTodosLosCoches() {
-        return coches;
-    }
-
-    /**
-     * Intenta avanzar el coche, devuelve true si lo logró
-     */
-    public static boolean avanzar(String matricula, double metros) {
-        for (Coche c : coches) {
-            if (c.getMatricula().equals(matricula)) {
-                return c.avanzar(metros);
-            }
+    public static void ponerGasolina(String matricula, double litros) {
+        Coche c = getCoche(matricula);
+        if (c != null) {
+            c.gasolina += litros;
+            notifyObserversGasolina(c);
         }
-        return false;
     }
 
-    /**
-     * Intenta poner gasolina, devuelve true si lo logró
-     */
-    public static boolean ponerGasolina(String matricula, double litros) {
-        for (Coche c : coches) {
-            if (c.getMatricula().equals(matricula)) {
-                if (litros > 0) {
-                    c.aumentarGasolina(litros); // Método que debes agregar en Coche
-                    return true;
-                }
-                break;
+    public static boolean avanzar(String matricula, double metros) {
+        Coche c = getCoche(matricula);
+        if (c != null) {
+            double consumo = metros / 10.0;
+            if (c.gasolina >= consumo) {
+                c.gasolina -= consumo;
+                notifyObserversGasolina(c);
+                return true;
             }
         }
         return false;
